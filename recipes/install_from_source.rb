@@ -54,7 +54,7 @@ bash "compile node.js (on #{node['nodejs']['make_threads']} cpu)" do
   cwd "/usr/local/src/node-v#{node['nodejs']['version']}"
   code <<-EOH
     PATH="/usr/local/bin:$PATH"
-    ./configure --prefix=#{node['nodejs']['dir']} && \
+    ./configure #{node['nodejs']['configure_flags'].join(' ')} && \
     make -j #{node['nodejs']['make_threads']}
   EOH
   creates "/usr/local/src/node-v#{node['nodejs']['version']}/node"
